@@ -7,9 +7,12 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "SSPgyerPlugin.h"
 
 @interface SSBasePluginTests : XCTestCase
-
+{
+    SSPgyerPlugin *_pgyerPlugin;            //
+}
 @end
 
 @implementation SSBasePluginTests
@@ -17,6 +20,7 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    _pgyerPlugin = [[SSPgyerPlugin alloc]init];
 }
 
 - (void)tearDown {
@@ -35,6 +39,28 @@
         // Put the code you want to measure the time of here.
     }];
 }
+
+
+
+- (void)testQueryBundleId
+{
+    // 测试页数
+    NSString *bundleId = @"com.wdwd.android.cpos";
+    [SSPgyerPlugin configPgyerApiKey:@"c5d6bea4ecdd76041fd87dd0b7e2e773" uKey:@"73605723e13be10ca670782500f6f58c"];
+    
+    
+    // 查询
+    [_pgyerPlugin test];
+    
+    
+    // 等待运行结束
+    while (YES) {
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
+    }
+    
+}
+
+
 
 
 - (void)testCompare

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3143FE62690BA3F0D1D30EF9 /* libPods-SSBasePlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE537AC1CA3CCB7987DC092C /* libPods-SSBasePlugin.a */; };
-		CB3FF8581F4EA11200F60449 /* SSBasePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = CB3FF8561F4EA11200F60449 /* SSBasePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB3FF8601F4EA12A00F60449 /* SSPgyerPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = CB3FF85E1F4EA12A00F60449 /* SSPgyerPlugin.h */; };
 		CB3FF8611F4EA12A00F60449 /* SSPgyerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3FF85F1F4EA12A00F60449 /* SSPgyerPlugin.m */; };
 		CBDFFA0A1F4EBF99009D7C42 /* SSBasePluginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBDFFA091F4EBF99009D7C42 /* SSBasePluginTests.m */; };
@@ -29,7 +28,6 @@
 		467EB463855B94616117A3F3 /* Pods-SSBasePlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSBasePlugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSBasePlugin/Pods-SSBasePlugin.release.xcconfig"; sourceTree = "<group>"; };
 		5BC5E6D2A7B64CE0AFC87ED0 /* Pods-SSBasePlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSBasePlugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SSBasePlugin/Pods-SSBasePlugin.debug.xcconfig"; sourceTree = "<group>"; };
 		CB3FF8531F4EA11200F60449 /* SSBasePlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSBasePlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB3FF8561F4EA11200F60449 /* SSBasePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSBasePlugin.h; sourceTree = "<group>"; };
 		CB3FF8571F4EA11200F60449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB3FF85E1F4EA12A00F60449 /* SSPgyerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPgyerPlugin.h; sourceTree = "<group>"; };
 		CB3FF85F1F4EA12A00F60449 /* SSPgyerPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPgyerPlugin.m; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 			children = (
 				CB3FF85E1F4EA12A00F60449 /* SSPgyerPlugin.h */,
 				CB3FF85F1F4EA12A00F60449 /* SSPgyerPlugin.m */,
-				CB3FF8561F4EA11200F60449 /* SSBasePlugin.h */,
 				CB3FF8571F4EA11200F60449 /* Info.plist */,
 			);
 			path = SSBasePlugin;
@@ -123,7 +120,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3FF8581F4EA11200F60449 /* SSBasePlugin.h in Headers */,
 				CB3FF8601F4EA12A00F60449 /* SSPgyerPlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,7 +391,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.SSBasePlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdwd.android.cpos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -414,7 +410,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.SSBasePlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdwd.android.cpos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -468,6 +464,7 @@
 				CBDFFA101F4EBF99009D7C42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
