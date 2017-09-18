@@ -176,6 +176,7 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
 }
 
 
+#pragma mark - 提示框
 // 获取到蒲公英 model
 - (void)_handlePgyerAppModel:(SSPgyerAppModel *)model
 {
@@ -192,10 +193,11 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
         NSString *title = [[NSString alloc]initWithFormat:@"有新版本啦 V%@",model.appVersion];
         NSString *message = nil;
 #endif
+        __weak typeof(self) weakself = self;
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 //
-                UIAlertAction *showaction = [UIAlertAction actionWithTitle:@"先逛逛" style:UIAlertActionStyleDefault handler:nil];
+                /*UIAlertAction *showaction = [UIAlertAction actionWithTitle:@"先逛逛" style:UIAlertActionStyleDefault handler:nil];
                 UIAlertAction *installaction = [UIAlertAction actionWithTitle:@"安装" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     NSString *urlstr = [[NSString alloc]initWithFormat:@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@",model.appKey];
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlstr]];
@@ -205,18 +207,42 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
                 [alert addAction:showaction];
                 [alert addAction:installaction];
                 
-                [[self navcontroller] presentViewController:alert animated:YES completion:nil];
+                [[self navcontroller] presentViewController:alert animated:YES completion:nil];*/
+                
+                // 提示框
+                void (^_finish)(UIAlertAction *action) = ^(UIAlertAction * _Nonnull action) {
+                    NSString *urlstr = [[NSString alloc]initWithFormat:@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@",model.appKey];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlstr]];
+                };
+                
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:message delegate:weakself cancelButtonTitle:@"先逛逛" otherButtonTitles:@"安装", nil];
+                [alertView bindValue:_finish forKey:@"block"];
+                [alertView show];
+                
             });
         }
 }
 
     
 // 导航控制器
-- (UINavigationController *)navcontroller
+//- (UINavigationController *)navcontroller
+//{
+//    id app = [[UIApplication sharedApplication] delegate];
+//    return (UINavigationController *)[[app window] rootViewController];
+//}
+
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    id app = [[UIApplication sharedApplication] delegate];
-    return (UINavigationController *)[[app window] rootViewController];
+    // 安装
+    if (buttonIndex == 1) {
+        void (^_finish)(UIAlertAction *action) = [alertView getBindValueForKey:@"block"];
+        _finish(nil);
+    }
 }
+
+
 
     
     
