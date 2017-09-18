@@ -8,14 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-//#import <SSModuleManager/SSModuleManager.h>
 
 @interface SSPgyerPlugin : NSObject
-//<SSModuleProtrol>
 
 
 
-#pragma mark -
+#pragma mark - config
 
 /**
  配置线上和sandbox测试账号 <默认为sunset的蒲公英权限>
@@ -32,7 +30,13 @@
 
 
 
-#pragma mark -
+#pragma mark - public api
+
+/**
+ 启动插件
+ */
+- (void)start;
+
 
 /**
  前者和后者版本号比较
@@ -41,10 +45,25 @@
  @param senderVersion 对比的版本号
  @return NSComparisonResult
  */
-- (NSComparisonResult)compareVersion:(NSString *)version
++ (NSComparisonResult)compareVersion:(NSString *)version
                        senderVersion:(NSString *)senderVersion;
 
 @end
+
+
+
+/**
+ method
+ 1, 作为子模块集成进去
+ [[SSModuleCenter defaultCenter] addModuleClass:NSClassFromString(@"SSPgyerPlugin")];
+ 2, 直接调用
+    SSPgyerPlugin *plugin = [SSPgyerPlugin alloc] init];
+    [plugin start];
+ **/
+
+
+
+
 
 
 

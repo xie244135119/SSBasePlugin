@@ -87,14 +87,20 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
 
 
 
+- (void)start
+{
+    // 蒲公英自动更新
+    _requestPage = 1;
+    [self _invokeLaterVersionWithPage:1];
+}
+
 
 
 #pragma mark - SSModuleProtrol
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions
 {
-    // 蒲公英自动更新
-    _requestPage = 1;
-    [self _invokeLaterVersionWithPage:1];
+    // 
+    [self start];
     
     return YES;
 }
@@ -122,7 +128,7 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
     }
 #endif
     
-    NSString *paramstr = [[NSString alloc]initWithFormat:@"uKey=%@&_api_key=%@&page=%li",uKey,_api_key,page];
+    NSString *paramstr = [[NSString alloc]initWithFormat:@"uKey=%@&_api_key=%@&page=%li",uKey,_api_key,(long)page];
     __weak typeof(self) weakself = self;
     NSString *urlstr = @"http://www.pgyer.com/apiv1/user/listMyPublished";
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:urlstr]];
@@ -183,13 +189,13 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
     // 比较版本号是否有更新
 #ifdef DEBUG
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    if ([self compareVersion:model.appVersionNo senderVersion:version] == NSOrderedDescending) {
+    if ([SSPgyerPlugin compareVersion:model.appVersionNo senderVersion:version] == NSOrderedDescending) {
         NSString *title = @"蒲公英有更新嘞";
         NSString *message = model.appUpdateDescription;
 #else
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 
-    if ([self compareVersion:model.appVersion senderVersion:version] == NSOrderedDescending) {
+    if ([SSPgyerPlugin compareVersion:model.appVersion senderVersion:version] == NSOrderedDescending) {
         NSString *title = [[NSString alloc]initWithFormat:@"有新版本啦 V%@",model.appVersion];
         NSString *message = nil;
 #endif
@@ -209,7 +215,7 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
                 
                 [[self navcontroller] presentViewController:alert animated:YES completion:nil];*/
                 
-                // 提示框
+                // 提示框 这里使用View 视图是防止和其他Controller模态展现产生冲突
                 void (^_finish)(UIAlertAction *action) = ^(UIAlertAction * _Nonnull action) {
                     NSString *urlstr = [[NSString alloc]initWithFormat:@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@",model.appKey];
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlstr]];
@@ -243,13 +249,11 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
 }
 
 
-
-    
     
 #pragma mark - public api
                    
 // 前者和后者版本号比较
-- (NSComparisonResult)compareVersion:(NSString *)version
++ (NSComparisonResult)compareVersion:(NSString *)version
                        senderVersion:(NSString *)senderVersion
 {
     // 思路： 将版本号转为数字判断 以点拆分，位数不够补0

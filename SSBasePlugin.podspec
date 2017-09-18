@@ -16,9 +16,9 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SSBasePlugin"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.summary      = "the plugins of SSBase"
-  s.description  = "all the plugin "
+  s.description  = "all the plugins ,such as the SSBaseKit, SSBaseLib"
 
   s.homepage     = "https://github.com/xie244135119/SSBasePlugin/blob/master/README.md"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
