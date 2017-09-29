@@ -130,7 +130,7 @@ static NSString *const kPgyeruKey = @"kPgyeruKey";
     
     NSString *paramstr = [[NSString alloc]initWithFormat:@"uKey=%@&_api_key=%@&page=%li",uKey,_api_key,(long)page];
     __weak typeof(self) weakself = self;
-    NSString *urlstr = @"http://www.pgyer.com/apiv1/user/listMyPublished";
+    NSString *urlstr = @"https://www.pgyer.com/apiv1/user/listMyPublished";
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:urlstr]];
     request.HTTPMethod = @"POST";
     request.HTTPBody = [paramstr dataUsingEncoding:4];
