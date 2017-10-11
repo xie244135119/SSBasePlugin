@@ -176,17 +176,10 @@ static NSString *const kPgyerApiKey = @"kPgyerApiKey";
 {
     NSString *password = @"123456";
     NSString *urlstr = [[NSString alloc]initWithFormat:@"https://www.pgyer.com/apiv2/app/install?buildKey=%@&_api_key=%@&password=%@",buildKey,[self _apiKey],password];
-    __weak typeof(self) weakself = self;
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:urlstr]];
-    request.HTTPMethod = @"GET";
-    NSURLSessionDataTask *tasdk = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSHTTPURLResponse *httpresponse = (NSHTTPURLResponse *)response;
-        if (httpresponse.statusCode == 200) {
-            NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            [weakself _handleResponse:responseObject];
-        }
-    }];
-    [tasdk resume];
+    NSURL *url = [NSURL URLWithString:urlstr];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 
