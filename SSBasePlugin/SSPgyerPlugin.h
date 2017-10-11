@@ -20,12 +20,9 @@
  dev 账号不配置的话，默认取线上账号
  
  @param appKey 蒲公英appKey
- @param uKey 蒲公英uKey
  */
 + (void)configPgyerApiKey:(NSString *)appKey;
-//                     uKey:(NSString *)uKey;
 + (void)configPgyerDevApiKey:(NSString *)appKey;
-//                     devUKey:(NSString *)uKey;
 
 
 
