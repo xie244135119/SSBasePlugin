@@ -46,11 +46,11 @@
 {
     // 测试页数
     NSString *bundleId = @"com.wdwd.android.cpos";
-    [SSPgyerPlugin configPgyerApiKey:@"c5d6bea4ecdd76041fd87dd0b7e2e773" uKey:@"73605723e13be10ca670782500f6f58c"];
+    [SSPgyerPlugin configPgyerApiKey:@"c5d6bea4ecdd76041fd87dd0b7e2e773"];
     
     
     // 查询
-    [_pgyerPlugin test];
+    [_pgyerPlugin start];
     
     
     // 等待运行结束

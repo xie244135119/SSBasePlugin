@@ -22,10 +22,10 @@
  @param appKey 蒲公英appKey
  @param uKey 蒲公英uKey
  */
-+ (void)configPgyerApiKey:(NSString *)appKey
-                     uKey:(NSString *)uKey;
-+ (void)configPgyerDevApiKey:(NSString *)appKey
-                     devUKey:(NSString *)uKey;
++ (void)configPgyerApiKey:(NSString *)appKey;
+//                     uKey:(NSString *)uKey;
++ (void)configPgyerDevApiKey:(NSString *)appKey;
+//                     devUKey:(NSString *)uKey;
 
 
 
@@ -60,6 +60,12 @@
     SSPgyerPlugin *plugin = [SSPgyerPlugin alloc] init];
     [plugin start];
  **/
+
+
+/*
+ 1, 蒲公英api升级apv1到apv2
+ 2,
+ */
 
 
 

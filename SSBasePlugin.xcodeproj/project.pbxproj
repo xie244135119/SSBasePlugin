@@ -31,6 +31,8 @@
 		CB3FF8571F4EA11200F60449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB3FF85E1F4EA12A00F60449 /* SSPgyerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPgyerPlugin.h; sourceTree = "<group>"; };
 		CB3FF85F1F4EA12A00F60449 /* SSPgyerPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPgyerPlugin.m; sourceTree = "<group>"; };
+		CB9EACD51F8E058F001F81E9 /* SSBasePluginTests2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSBasePluginTests2.m; sourceTree = "<group>"; };
+		CB9EACD71F8E058F001F81E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBDFFA071F4EBF99009D7C42 /* SSBasePluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSBasePluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDFFA091F4EBF99009D7C42 /* SSBasePluginTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSBasePluginTests.m; sourceTree = "<group>"; };
 		CBDFFA0B1F4EBF99009D7C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				CB3FF8551F4EA11200F60449 /* SSBasePlugin */,
 				CBDFFA081F4EBF99009D7C42 /* SSBasePluginTests */,
+				CB9EACD41F8E058F001F81E9 /* SSBasePluginTests2 */,
 				CB3FF8541F4EA11200F60449 /* Products */,
 				82B33278F0539CBE673CD022 /* Pods */,
 				CF0AB13CDDD19E8957E2E7C6 /* Frameworks */,
@@ -94,6 +97,15 @@
 				CB3FF8571F4EA11200F60449 /* Info.plist */,
 			);
 			path = SSBasePlugin;
+			sourceTree = "<group>";
+		};
+		CB9EACD41F8E058F001F81E9 /* SSBasePluginTests2 */ = {
+			isa = PBXGroup;
+			children = (
+				CB9EACD51F8E058F001F81E9 /* SSBasePluginTests2.m */,
+				CB9EACD71F8E058F001F81E9 /* Info.plist */,
+			);
+			path = SSBasePluginTests2;
 			sourceTree = "<group>";
 		};
 		CBDFFA081F4EBF99009D7C42 /* SSBasePluginTests */ = {
