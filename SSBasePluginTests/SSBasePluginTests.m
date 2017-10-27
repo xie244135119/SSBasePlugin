@@ -69,7 +69,6 @@
     NSString *version2 = @"1.1";
     NSString *version3 = @"1.0.8.5";
     
-    
     NSLog(@" 比较结果%li %li %li ",[self compareVersion:version1 senderVersion:version2],[self compareVersion:version2 senderVersion:version3],[self compareVersion:version1 senderVersion:version3]);
 }
 
@@ -97,10 +96,22 @@
         }
         count>0?(first=arry):(second=arry);
     }
-    NSInteger firstversion = [[first componentsJoinedByString:@""] integerValue];
-    NSInteger secondversion = [[second componentsJoinedByString:@""] integerValue];
-    return firstversion>secondversion?NSOrderedDescending:NSOrderedAscending;
+    
+    BOOL resault = YES;
+    for (int i =0; i<first.count; i++) {
+        NSString *a1 = first[i];
+        NSString *a2 = second[i];
+        if (a1.integerValue == a2.integerValue) {
+            continue;
+        }
+        resault = a1.integerValue > a2.integerValue ;
+        break;
+    }
+    
+    return resault ? NSOrderedDescending:NSOrderedAscending;
 }
+
+
 
 
 

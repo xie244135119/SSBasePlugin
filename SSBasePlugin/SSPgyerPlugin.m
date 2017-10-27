@@ -273,28 +273,37 @@ static NSString *const kPgyerApiKey = @"kPgyerApiKey";
                    
 // 前者和后者版本号比较
 + (NSComparisonResult)compareVersion:(NSString *)version
-                       senderVersion:(NSString *)senderVersion
+senderVersion:(NSString *)senderVersion
 {
     // 思路： 将版本号转为数字判断 以点拆分，位数不够补0
-    if ([version isEqualToString:senderVersion]) {
-        return NSOrderedSame;
+     if ([version isEqualToString:senderVersion]) {
+            return NSOrderedSame;
     }
-    
+        
     NSArray *first = [version componentsSeparatedByString:@"."];
     NSArray *second = [senderVersion componentsSeparatedByString:@"."];
     if (first.count != second.count) {
-        NSInteger count = second.count-first.count;
+        NSInteger count = (second.count-first.count);
         NSMutableArray *arry = count>0?first.mutableCopy:second.mutableCopy;
         int i = 0;
-        while (i<count) {
+        while (i<labs(count)) {
             [arry addObject:@"0"];
             i++;
         }
         count>0?(first=arry):(second=arry);
     }
-    NSInteger firstversion = [[first componentsJoinedByString:@""] integerValue];
-    NSInteger secondversion = [[second componentsJoinedByString:@""] integerValue];
-    return firstversion>secondversion?NSOrderedDescending:NSOrderedAscending;
+    
+    BOOL resault = YES;
+    for (int i =0; i<first.count; i++) {
+        NSString *a1 = first[i];
+        NSString *a2 = second[i];
+        if (a1.integerValue == a2.integerValue) {
+            continue;
+        }
+        resault = a1.integerValue > a2.integerValue ;
+        break;
+    }
+    return resault ? NSOrderedDescending:NSOrderedAscending;
 }
 
 
