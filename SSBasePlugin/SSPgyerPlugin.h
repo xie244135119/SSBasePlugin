@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <SSModuleManager/SSModule.h>
 
-@interface SSPgyerPlugin : NSObject
+@interface SSPgyerPlugin : NSObject<SSModule>
 
 
 

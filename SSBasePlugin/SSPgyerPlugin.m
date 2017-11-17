@@ -131,10 +131,10 @@ static NSString *const kPgyerApiKey = @"kPgyerApiKey";
 }
 
 
-- (void)test
-{
-    [self application:nil didFinishLaunchingWithOptions:nil];
-}
+//- (void)test
+//{
+//    [self application:nil didFinishLaunchingWithOptions:nil];
+//}
 
 
 // 当前的AppKey
