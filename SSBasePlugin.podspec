@@ -62,11 +62,11 @@ Pod::Spec.new do |s|
   end
 
   #集成极光推送
-  s.subspec "ApnsPush" do |st|
-    st.source_files="SSBasePlugin/ApnsPush/*.{h,m}"
-    # 极光推送
-    st.dependency 'JPush', '~>3.0.7'
-  end
+  # s.subspec "ApnsPush" do |st|
+  #   st.source_files="SSBasePlugin/ApnsPush/*.{h,m}"
+  #   # 极光推送
+  #   st.dependency 'JPush', '~>3.0.7'
+  # end
 
   #蒲公英测试插件
   s.subspec "Plugin" do |st|
