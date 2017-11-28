@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SSBasePlugin"
-  s.version      = "1.2.5"
+  s.version      = "1.2.6"
   s.summary      = "the plugins of SSBase"
   s.description  = "all the plugins ,such as the SSBaseKit, SSBaseLib"
 
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/xie244135119/SSBasePlugin.git", :tag => "#{s.version}" }
 
 
-  s.source_files  = "SSBasePlugin", "SSBasePlugin/*.{h,m}"
+  # s.source_files  = "SSBasePlugin", "SSBasePlugin/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -51,8 +51,29 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  s.dependency "SSBaseLib"
+  s.default_subspec = 'UMeng'
   s.dependency "SSModuleManager"
+
+  # 友盟
+  s.subspec "UMeng" do |st|
+    st.source_files="SSBasePlugin/UMeng/*.{h,m}"
+    # 友盟统计分析模块
+    st.dependency 'UMengAnalytics',  '~>4.1.8'
+  end
+
+  #集成极光推送
+  s.subspec "ApnsPush" do |st|
+    st.source_files="SSBasePlugin/ApnsPush/*.{h,m}"
+    # 极光推送
+    st.dependency 'JPush', '~>3.0.7'
+  end
+
+  #蒲公英测试插件
+  s.subspec "Plugin" do |st|
+    st.source_files="SSBasePlugin/Pgyer/*.{h,m}"
+    #
+    s.dependency "SSBaseLib"
+  end
 
 end
 

@@ -8,6 +8,13 @@ target 'SSBasePlugin' do
   # Pods for SSBasePlugin
 	pod 'SSBaseLib'
 	
+    # 模块Base框架
 	pod 'SSModuleManager'
+    
+    #友盟统计分析模块
+    pod 'UMengAnalytics',  '~>4.1.8'
+    
+    #极光推送
+    pod 'JPush', '~>3.0.7'
 
 end

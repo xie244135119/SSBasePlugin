@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3143FE62690BA3F0D1D30EF9 /* libPods-SSBasePlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE537AC1CA3CCB7987DC092C /* libPods-SSBasePlugin.a */; };
-		CB3FF8601F4EA12A00F60449 /* SSPgyerPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = CB3FF85E1F4EA12A00F60449 /* SSPgyerPlugin.h */; };
-		CB3FF8611F4EA12A00F60449 /* SSPgyerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3FF85F1F4EA12A00F60449 /* SSPgyerPlugin.m */; };
+		CB15A4501FCD36C500F1794E /* SSUMMobService.m in Sources */ = {isa = PBXBuildFile; fileRef = CB15A44E1FCD36A000F1794E /* SSUMMobService.m */; };
+		CB15A4531FCD370300F1794E /* SSApnsPushService.m in Sources */ = {isa = PBXBuildFile; fileRef = CB15A4511FCD370100F1794E /* SSApnsPushService.m */; };
+		CB15A4541FCD370700F1794E /* SSApnsPushService.h in Headers */ = {isa = PBXBuildFile; fileRef = CB15A4521FCD370100F1794E /* SSApnsPushService.h */; };
+		CB15A4551FCD370800F1794E /* SSUMMobService.h in Headers */ = {isa = PBXBuildFile; fileRef = CB15A44F1FCD36A000F1794E /* SSUMMobService.h */; };
+		CB15A4591FCD5DB300F1794E /* SSPgyerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = CB15A4581FCD5DAF00F1794E /* SSPgyerPlugin.m */; };
+		CB15A45A1FCD5DB600F1794E /* SSPgyerPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = CB15A4571FCD5DAF00F1794E /* SSPgyerPlugin.h */; };
 		CBDFFA0A1F4EBF99009D7C42 /* SSBasePluginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBDFFA091F4EBF99009D7C42 /* SSBasePluginTests.m */; };
 		CBDFFA0C1F4EBF99009D7C42 /* SSBasePlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB3FF8531F4EA11200F60449 /* SSBasePlugin.framework */; };
 /* End PBXBuildFile section */
@@ -27,10 +31,14 @@
 /* Begin PBXFileReference section */
 		467EB463855B94616117A3F3 /* Pods-SSBasePlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSBasePlugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSBasePlugin/Pods-SSBasePlugin.release.xcconfig"; sourceTree = "<group>"; };
 		5BC5E6D2A7B64CE0AFC87ED0 /* Pods-SSBasePlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSBasePlugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SSBasePlugin/Pods-SSBasePlugin.debug.xcconfig"; sourceTree = "<group>"; };
+		CB15A44E1FCD36A000F1794E /* SSUMMobService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSUMMobService.m; sourceTree = "<group>"; };
+		CB15A44F1FCD36A000F1794E /* SSUMMobService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSUMMobService.h; sourceTree = "<group>"; };
+		CB15A4511FCD370100F1794E /* SSApnsPushService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSApnsPushService.m; sourceTree = "<group>"; };
+		CB15A4521FCD370100F1794E /* SSApnsPushService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSApnsPushService.h; sourceTree = "<group>"; };
+		CB15A4571FCD5DAF00F1794E /* SSPgyerPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPgyerPlugin.h; sourceTree = "<group>"; };
+		CB15A4581FCD5DAF00F1794E /* SSPgyerPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSPgyerPlugin.m; sourceTree = "<group>"; };
 		CB3FF8531F4EA11200F60449 /* SSBasePlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSBasePlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3FF8571F4EA11200F60449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB3FF85E1F4EA12A00F60449 /* SSPgyerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPgyerPlugin.h; sourceTree = "<group>"; };
-		CB3FF85F1F4EA12A00F60449 /* SSPgyerPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPgyerPlugin.m; sourceTree = "<group>"; };
 		CB9EACD51F8E058F001F81E9 /* SSBasePluginTests2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSBasePluginTests2.m; sourceTree = "<group>"; };
 		CB9EACD71F8E058F001F81E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBDFFA071F4EBF99009D7C42 /* SSBasePluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSBasePluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +76,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CB15A44C1FCD368B00F1794E /* ApnsPush */ = {
+			isa = PBXGroup;
+			children = (
+				CB15A4521FCD370100F1794E /* SSApnsPushService.h */,
+				CB15A4511FCD370100F1794E /* SSApnsPushService.m */,
+			);
+			path = ApnsPush;
+			sourceTree = "<group>";
+		};
+		CB15A44D1FCD369000F1794E /* UMeng */ = {
+			isa = PBXGroup;
+			children = (
+				CB15A44F1FCD36A000F1794E /* SSUMMobService.h */,
+				CB15A44E1FCD36A000F1794E /* SSUMMobService.m */,
+			);
+			path = UMeng;
+			sourceTree = "<group>";
+		};
+		CB15A4561FCD5DAF00F1794E /* Pgyer */ = {
+			isa = PBXGroup;
+			children = (
+				CB15A4571FCD5DAF00F1794E /* SSPgyerPlugin.h */,
+				CB15A4581FCD5DAF00F1794E /* SSPgyerPlugin.m */,
+			);
+			path = Pgyer;
+			sourceTree = "<group>";
+		};
 		CB3FF8491F4EA11100F60449 = {
 			isa = PBXGroup;
 			children = (
@@ -92,8 +127,9 @@
 		CB3FF8551F4EA11200F60449 /* SSBasePlugin */ = {
 			isa = PBXGroup;
 			children = (
-				CB3FF85E1F4EA12A00F60449 /* SSPgyerPlugin.h */,
-				CB3FF85F1F4EA12A00F60449 /* SSPgyerPlugin.m */,
+				CB15A4561FCD5DAF00F1794E /* Pgyer */,
+				CB15A44D1FCD369000F1794E /* UMeng */,
+				CB15A44C1FCD368B00F1794E /* ApnsPush */,
 				CB3FF8571F4EA11200F60449 /* Info.plist */,
 			);
 			path = SSBasePlugin;
@@ -132,7 +168,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3FF8601F4EA12A00F60449 /* SSPgyerPlugin.h in Headers */,
+				CB15A4541FCD370700F1794E /* SSApnsPushService.h in Headers */,
+				CB15A45A1FCD5DB600F1794E /* SSPgyerPlugin.h in Headers */,
+				CB15A4551FCD370800F1794E /* SSUMMobService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +307,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3FF8611F4EA12A00F60449 /* SSPgyerPlugin.m in Sources */,
+				CB15A4531FCD370300F1794E /* SSApnsPushService.m in Sources */,
+				CB15A4591FCD5DB300F1794E /* SSPgyerPlugin.m in Sources */,
+				CB15A4501FCD36C500F1794E /* SSUMMobService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
