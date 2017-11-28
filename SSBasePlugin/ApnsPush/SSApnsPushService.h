@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SSModuleManager/SSModule.h>
+#import "SSPluginActionModel.h"
 
 
 @protocol SSPushConfig<NSObject>
@@ -26,7 +27,7 @@
 
 // 点击处理回调事件
 // action {action_type:xxx, action_params:xxx}
-- (void (^)(NSDictionary *action))handleAction;
+- (void (^)(SSPluginActionModel *actionModel))handleAction;
 
 @end
 

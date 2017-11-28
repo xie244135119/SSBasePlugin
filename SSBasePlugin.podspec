@@ -66,6 +66,7 @@ Pod::Spec.new do |s|
   #   st.source_files="SSBasePlugin/ApnsPush/*.{h,m}"
   #   # 极光推送
   #   st.dependency 'JPush', '~>3.0.7'
+  #   st.dependency "SSBasePlugin/Private"
   # end
 
   #蒲公英测试插件
@@ -74,6 +75,20 @@ Pod::Spec.new do |s|
     #
     s.dependency "SSBaseLib"
   end
+
+  #唤起App
+  s.subspec "EvokeApp" do |st|
+    st.source_files="SSBasePlugin/EvokeApp/*.{h,m}"
+    #
+    st.dependency "SSBaseLib"
+    st.dependency "SSBasePlugin/Private"
+  end
+
+  # Model层
+  s.subspec "Private" do |st|
+    st.source_files="SSBasePlugin/Model/*.{h,m}"
+  end
+
 
 end
 

@@ -219,14 +219,16 @@
         return;
     }
     
-    if (![self.pushConfig respondsToSelector:@selector(handleAction)]) {
-        // 不存在响应事件
-        return;
-    }
-    
-    void (^action)(NSDictionary *action) = [self.pushConfig handleAction];
-    if (action) {
-        action(@{@"action_type":action_type, @"action_params":action_param});
+    // 等登录成功跳转相应的页面
+    if ([self.pushConfig respondsToSelector:@selector(handleAction)]) {
+        void (^action)(SSPluginActionModel *actionModel) = [self.pushConfig handleAction];
+        if (action) {
+            dispatch_time_t aftertime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)0.2);
+            dispatch_after(aftertime, dispatch_get_main_queue(), ^{
+                SSPluginActionModel *model = [[SSPluginActionModel alloc]initWithActionType:action_type actionParams:action_param actionUrl:nil];
+                action(model);
+            });
+        }
     }
 }
 
