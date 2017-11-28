@@ -69,7 +69,7 @@ Pod::Spec.new do |s|
   # end
 
   #蒲公英测试插件
-  s.subspec "Plugin" do |st|
+  s.subspec "Pgyer" do |st|
     st.source_files="SSBasePlugin/Pgyer/*.{h,m}"
     #
     s.dependency "SSBaseLib"
