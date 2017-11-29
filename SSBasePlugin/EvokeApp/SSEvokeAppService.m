@@ -66,6 +66,8 @@
 - (void)logout
 {
     _onLoadSuccess = NO;
+    _applicationOpenUrl = nil;
+    _universalLinkUrl = nil;
 }
 
 

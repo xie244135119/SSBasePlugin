@@ -17,10 +17,10 @@
 
 // 默认为当前类自身实现此协议
 @protocol SSMobConfig<NSObject>
-// AppKey
-- (NSString *)mobAppKey;
 
 @optional
+// AppKey
+- (NSString *)mobAppKey;
 // AppSecret
 - (NSString *)mobAppSecret;
 // channleid 默认为Appstore

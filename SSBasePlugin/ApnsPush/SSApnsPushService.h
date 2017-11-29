@@ -17,10 +17,10 @@
  */
 
 @protocol SSPushConfig<NSObject>
-// AppKey
-- (NSString *)pushAppKey;
 
 @optional
+// AppKey
+- (NSString *)pushAppKey;
 // 测试AppKey
 - (NSString *)pushAppKey_Dev;
 // 注册Tag
@@ -31,17 +31,12 @@
 - (NSString *)pushAlias_Dev;
 
 // 点击处理回调事件
-// action {action_type:xxx, action_params:xxx}
 - (void (^)(SSPluginActionModel *actionModel))handleAction;
 
 @end
 
 
 @interface SSApnsPushService : NSObject<SSModule>
-
-// 配置信息
-@property(nonatomic, weak) id<SSPushConfig> pushConfig;
-
 
 @end
 

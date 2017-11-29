@@ -19,14 +19,17 @@
 #pragma mark -  SSModuleProtrol
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions
 {
-    NSString *appKey = [self mobAppKey];
+    NSString *appKey = @"";
+    if ([self respondsToSelector:@selector(mobAppKey)]) {
+        appKey = [self mobAppKey];
+    }
     NSString *appSecret = nil;
     NSString *channleid = nil;
 #ifdef DEBUG
+    appKey = @"";
     // 默认输出日志
     [MobClick setLogEnabled:YES];
 #else
-    appKey = [self mobAppKey];
     if ([self respondsToSelector:@selector(mobAppSecret)]) {
         appSecret = [self mobAppSecret];
     }
@@ -54,13 +57,6 @@
     [MobClick endLogPageView:pageName];
 }
 
-
-#pragma mark - SSMobConfig
-//
-- (NSString *)mobAppKey
-{
-    return @"";
-}
 
 @end
 

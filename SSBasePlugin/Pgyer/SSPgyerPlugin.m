@@ -19,33 +19,6 @@ static NSString *const kPgyerApiKey = @"kPgyerApiKey";
 @interface SSPgyerAppModel: AMDBaseModel
 
 #pragma mark - Apv1(蒲公英1.0接口)
-// 返回应用最新build的App Key
-//@property(nonatomic, copy) NSString *appKey;
-//// 应用类型（1:iOS; 2:Android）
-//@property(nonatomic, strong) NSNumber *appType;
-//// App 文件大小
-//@property(nonatomic, strong) NSNumber *ppFileSize;
-//// 应用名称
-//@property(nonatomic, copy) NSString *appName;
-//// 版本号
-//@property(nonatomic, copy) NSString *appVersion;
-//// 适用于Android的版本编号，iOS始终为0
-//@property(nonatomic, copy) NSString *appVersionNo;
-//// 蒲公英生成的用于区分历史版本的build号
-//@property(nonatomic, copy) NSString *appBuildVersion;
-//// 应用程序包名，iOS为BundleId，Android为包名
-//@property(nonatomic, copy) NSString *appIdentifier;
-//// 应用的Icon图标key
-//@property(nonatomic, copy) NSString *appIcon;
-//// app描述
-//@property(nonatomic, copy) NSString *appDescription;
-//// 更新介绍
-//@property(nonatomic, copy) NSString *appUpdateDescription;
-//// 截图
-//@property(nonatomic, copy) NSString *appScreenshots;
-//// 创建时间
-//@property(nonatomic, copy) NSString *appCreated;
-
 
 #pragma mark - Apv1(蒲公英2.0接口)
 // 返回应用最新build Key

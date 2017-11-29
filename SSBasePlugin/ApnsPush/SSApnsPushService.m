@@ -14,10 +14,10 @@
 #import <JPush/JPUSHService.h>
 #import <UserNotifications/UserNotifications.h>
 
-
 @interface SSApnsPushService() <JPUSHRegisterDelegate, SSPushConfig>
 {
     NSDictionary *_launchOptions;           //启动时携带的跳转参数
+    BOOL _onLoadSuccess;                        //已经启动渲染成功
 }
 @end
 
@@ -62,6 +62,7 @@
 // 登录渲染完成
 - (void)onloadSuccess
 {
+    _onLoadSuccess = YES;
     // 是否有推送信息
     if (_launchOptions) {
         [self LaunchingWithOptions:_launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]];
@@ -69,27 +70,17 @@
     }
 }
 
+- (void)logout
+{
+    _onLoadSuccess = NO;
+    _launchOptions = nil;
+}
+
 // 收到远程通知的时候
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    // 极光推送
-    if ([userInfo.allKeys containsObject:@"_j_msgid"]) {
-        // 处理APNS消息
-        [JPUSHService handleRemoteNotification:userInfo];
-        
-        //处理推送--apns消息
-        [self didReceiveAPSMessage:userInfo];
-    }
+    [self _handleReceiveRemoteNotification:userInfo];
 }
-
-//// 收到远程通知的时候  8.0-10.0
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
-//{
-//    // 本地处理
-//    [self application:application didReceiveRemoteNotification:userInfo];
-//    //
-//    completionHandler(UIBackgroundFetchResultNoData);
-//}
 
 
 #pragma mark - private api
@@ -100,11 +91,14 @@
     // 目前无用
     [defaultCenter addObserver:self selector:@selector(networkDidReceiveNotAPSMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
     
-    NSString *appKey = [self.pushConfig pushAppKey];
+    NSString *appKey = @"";
+    if ([self respondsToSelector:@selector(pushAppKey)]) {
+        appKey = [self pushAppKey];
+    }
     BOOL isProduction = YES;
 #ifdef DEBUG
-    if ([self.pushConfig respondsToSelector:@selector(pushAppKey_Dev)]) {
-        appKey = [self.pushConfig pushAppKey_Dev];
+    if ([self respondsToSelector:@selector(pushAppKey_Dev)]) {
+        appKey = [self pushAppKey_Dev];
     }
     isProduction = NO;
 #endif
@@ -134,18 +128,18 @@
     NSString *alias = @"";
     NSSet *tags = nil;
 #if DEBUG
-    if ([self.pushConfig respondsToSelector:@selector(pushAlias_Dev)]) {
-        alias = [self.pushConfig pushAlias_Dev];
+    if ([self respondsToSelector:@selector(pushAlias_Dev)]) {
+        alias = [self pushAlias_Dev];
     }
-    if ([self.pushConfig respondsToSelector:@selector(pushTags_Dev)]) {
-        tags = [self.pushConfig pushTags_Dev];
+    if ([self respondsToSelector:@selector(pushTags_Dev)]) {
+        tags = [self pushTags_Dev];
     }
 #else
-    if ([self.pushConfig respondsToSelector:@selector(pushAlias)]) {
-        alias = [self.pushConfig pushAlias];
+    if ([self respondsToSelector:@selector(pushAlias)]) {
+        alias = [self pushAlias];
     }
-    if ([self.pushConfig respondsToSelector:@selector(pushTags)]) {
-        tags = [self.pushConfig pushTags];
+    if ([self respondsToSelector:@selector(pushTags)]) {
+        tags = [self pushTags];
     }
     // 关闭日志模式
     [JPUSHService setLogOFF];
@@ -175,11 +169,16 @@
 
 
 // App内收到apns推送的信息
-- (void)didReceiveAPSMessage:(NSDictionary *)userInfo
+- (BOOL)didReceiveAPSMessage:(NSDictionary *)userInfo
 {
+    if (!_onLoadSuccess) {
+        // 尚未登录
+        return NO;
+    }
+    
     if (userInfo[@"action_type"] == nil || userInfo[@"action_params"] == nil) {
         // 只需要展示
-        return;
+        return NO;
     }
     
     switch ([UIApplication sharedApplication].applicationState) {
@@ -196,11 +195,18 @@
             [alertController addAction:cancel];
             
             UIViewController *controller = [[[UIApplication sharedApplication].delegate window] rootViewController];
-            [alertController presentViewController:controller animated:YES completion:nil];
+            [controller presentViewController:alertController animated:YES completion:nil];
+            return YES;
+        }
+            break;
+        case UIApplicationStateInactive:   {    //待激活状态
+            // 跳转
+                [self LaunchingWithOptions:userInfo];
+            return YES;
         }
             break;
         default: {
-            [self LaunchingWithOptions:userInfo];
+            return NO;
         }
             break;
     }
@@ -220,10 +226,10 @@
     }
     
     // 等登录成功跳转相应的页面
-    if ([self.pushConfig respondsToSelector:@selector(handleAction)]) {
-        void (^action)(SSPluginActionModel *actionModel) = [self.pushConfig handleAction];
+    if ([self respondsToSelector:@selector(handleAction)]) {
+        void (^action)(SSPluginActionModel *actionModel) = [self handleAction];
         if (action) {
-            dispatch_time_t aftertime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)0.2);
+            dispatch_time_t aftertime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)0.1);
             dispatch_after(aftertime, dispatch_get_main_queue(), ^{
                 SSPluginActionModel *model = [[SSPluginActionModel alloc]initWithActionType:action_type actionParams:action_param actionUrl:nil];
                 action(model);
@@ -232,6 +238,19 @@
     }
 }
 
+// 处理收到的推送消息
+- (BOOL)_handleReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    // 处理APNS消息
+    // 极光推送
+    if ([userInfo.allKeys containsObject:@"_j_msgid"]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        
+        //处理推送--apns消息
+        return [self didReceiveAPSMessage:userInfo];
+    }
+    return NO;
+}
 
 
 #pragma mark - JPUSHRegisterDelegate
@@ -239,29 +258,22 @@
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
     // Required
     NSDictionary * userInfo = notification.request.content.userInfo;
+    BOOL handler = NO;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         // App内跳转
-        [self application:nil didReceiveRemoteNotification:userInfo];
+       handler = [self _handleReceiveRemoteNotification:userInfo];
     }
-    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+    completionHandler(!handler?UNNotificationPresentationOptionAlert:UNNotificationPresentationOptionSound); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
 }
 
 // iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
     // Required
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        [JPUSHService handleRemoteNotification:userInfo];
+        [self _handleReceiveRemoteNotification:userInfo];
     }
     completionHandler();  // 系统要求执行这个方法
-}
-
-
-
-#pragma mark - SSPushConfig
-- (NSString *)pushAppKey
-{
-    return @"";
 }
 
 
