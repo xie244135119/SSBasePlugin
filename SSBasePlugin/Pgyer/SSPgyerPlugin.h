@@ -1,6 +1,6 @@
 //
 //  SSPgyerPlugin.h
-//  AppMicroDistribution
+//  SSBasePlugin
 //  蒲公英插件使用--内测使用
 //  Created by SunSet on 2017/7/13.
 //  Copyright © 2017年 SunSet. All rights reserved.

@@ -1,6 +1,6 @@
+//  SSPushConfig.h
+//  SSBasePlugin
 //
-//  AMDPushService.h
-//  AppMicroDistribution
 //  极光推送服务<目前集成极光推送服务>
 //  Created by SunSet on 15-5-19.
 //  Copyright (c) 2015年 SunSet. All rights reserved.
@@ -10,6 +10,11 @@
 #import <SSModuleManager/SSModule.h>
 #import "SSPluginActionModel.h"
 
+
+/*
+ 集成指南
+ 1, 通过类别 或 分类 实现SSPushConfig协议即可
+ */
 
 @protocol SSPushConfig<NSObject>
 // AppKey

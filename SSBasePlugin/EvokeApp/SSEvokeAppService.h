@@ -1,6 +1,6 @@
 //
-//  AMDSourceAppOpenService.h
-//  AppMicroDistribution
+//  SSEvokeAppService.h
+//  SSBasePlugin
 //  进入App内 相应跳转处理
 //  Created by SunSet on 15-11-17.
 //  Copyright (c) 2015年 SunSet. All rights reserved.
@@ -10,6 +10,11 @@
 #import <SSModuleManager/SSModule.h>
 #import "SSPluginActionModel.h"
 
+/*
+ 集成指南
+ 1, 通过类别 或 分类 实现SSEvokeConfig协议即可
+ */
+
 @protocol SSEvokeConfig<NSObject>
 
 @optional
@@ -17,7 +22,6 @@
 - (NSString *)evokeUrlScheme;
 
 // 点击处理回调事件
-// action {action_type:xxx, action_params:xxx}
 - (void (^)(SSPluginActionModel *actionModel))handleAction;
 @end
 
@@ -29,8 +33,6 @@
  2, 第三方页面回调处理
  3, 支持uninval link 功能
  */
-
-@property(nonatomic, weak) id<SSEvokeConfig> config;
 
 @end
 

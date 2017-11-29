@@ -1,6 +1,6 @@
 //
-//  AMDPushService.m
-//  AppMicroDistribution
+//  SSApnsPushService.m
+//  SSBasePlugin
 //
 //  Created by SunSet on 15-5-19.
 //  Copyright (c) 2015年 SunSet. All rights reserved.
@@ -15,7 +15,7 @@
 #import <UserNotifications/UserNotifications.h>
 
 
-@interface SSApnsPushService() <JPUSHRegisterDelegate>
+@interface SSApnsPushService() <JPUSHRegisterDelegate, SSPushConfig>
 {
     NSDictionary *_launchOptions;           //启动时携带的跳转参数
 }
@@ -247,13 +247,21 @@
 }
 
 // iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
     // Required
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
     }
     completionHandler();  // 系统要求执行这个方法
+}
+
+
+
+#pragma mark - SSPushConfig
+- (NSString *)pushAppKey
+{
+    return @"";
 }
 
 

@@ -1,13 +1,17 @@
 //
-//  AMDUMMobService.m
-//  AppMicroDistribution
+//  SSUMMobService.m
+//  SSBasePlugin
 //
-//  Created by 马清霞 on 2017/7/7.
+//  Created by SunSet on 2017/7/7.
 //  Copyright © 2017年 SunSet. All rights reserved.
 //
 
 #import "SSUMMobService.h"
 #import <UMMobClick/MobClick.h>
+
+@interface SSUMMobService()<SSMobConfig>
+
+@end
 
 @implementation SSUMMobService
 
@@ -15,19 +19,19 @@
 #pragma mark -  SSModuleProtrol
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions
 {
-    NSString *appKey = @"";
+    NSString *appKey = [self mobAppKey];
     NSString *appSecret = nil;
     NSString *channleid = nil;
 #ifdef DEBUG
     // 默认输出日志
     [MobClick setLogEnabled:YES];
 #else
-    appKey = [self.mobConfig mobAppKey];
-    if ([self.mobConfig respondsToSelector:@selector(mobAppSecret)]) {
-        appSecret = [self.mobConfig mobAppSecret];
+    appKey = [self mobAppKey];
+    if ([self respondsToSelector:@selector(mobAppSecret)]) {
+        appSecret = [self mobAppSecret];
     }
-    if ([self.mobConfig respondsToSelector:@selector(mobChannelId)]) {
-        channleid = [self.mobConfig mobChannelId];
+    if ([self respondsToSelector:@selector(mobChannelId)]) {
+        channleid = [self mobChannelId];
     }
 #endif
     UMAnalyticsConfig *config = [UMAnalyticsConfig sharedInstance];
@@ -50,6 +54,13 @@
     [MobClick endLogPageView:pageName];
 }
 
+
+#pragma mark - SSMobConfig
+//
+- (NSString *)mobAppKey
+{
+    return @"";
+}
 
 @end
 

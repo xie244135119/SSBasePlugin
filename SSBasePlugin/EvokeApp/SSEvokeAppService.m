@@ -1,6 +1,6 @@
 //
-//  AMDSourceAppOpenService.m
-//  AppMicroDistribution
+//  SSEvokeAppService.m
+//  SSBasePlugin
 //
 //  Created by SunSet on 15-11-17.
 //  Copyright (c) 2015年 SunSet. All rights reserved.
@@ -8,13 +8,12 @@
 
 #import "SSEvokeAppService.h"
 
-@interface SSEvokeAppService()<SSModule>
+@interface SSEvokeAppService()<SSEvokeConfig>
 {
     NSURL *_universalLinkUrl;                       //配置通用链接地址
     NSURL *_applicationOpenUrl;                     //启动打开的页面
     
     BOOL _onLoadSuccess;                            //已经加载成功
-    
 }
 @end
 
@@ -32,9 +31,9 @@
 // 打开外部链接 <仅处理来自平台内部的链接>
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    if ([self.config respondsToSelector:@selector(evokeUrlScheme)]) {
+    if ([self respondsToSelector:@selector(evokeUrlScheme)]) {
         // 来自我们自己平台的调用
-        if ([url.scheme isEqualToString:self.config.evokeUrlScheme] ) {
+        if ([url.scheme isEqualToString:self.evokeUrlScheme] ) {
             
             [self application:application openURL:url];
             return YES;
@@ -113,8 +112,8 @@
     if (url == nil) return;
 
     // 等登录成功跳转相应的页面
-    if ([self.config respondsToSelector:@selector(handleAction)]) {
-        void (^action)(SSPluginActionModel *actionModel) = [self.config handleAction];
+    if ([self respondsToSelector:@selector(handleAction)]) {
+        void (^action)(SSPluginActionModel *actionModel) = [self handleAction];
         if (action) {
             dispatch_time_t aftertime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)0.2);
             dispatch_after(aftertime, dispatch_get_main_queue(), ^{
