@@ -147,8 +147,9 @@ static NSString *const kPgyerApiKey = @"kPgyerApiKey";
 // 安装App
 - (void)_invokeInstallAppWithKey:(NSString *)buildKey
 {
-    NSString *password = @"123456";
-    NSString *urlstr = [[NSString alloc]initWithFormat:@"https://www.pgyer.com/apiv2/app/install?buildKey=%@&_api_key=%@&password=%@",buildKey,[self _apiKey],password];
+//    NSString *password = @"123456";
+//    NSString *urlstr = [[NSString alloc]initWithFormat:@"https://www.pgyer.com/apiv2/app/install?buildKey=%@&_api_key=%@&password=%@",buildKey,[self _apiKey],password];
+    NSString *urlstr = [[NSString alloc]initWithFormat:@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@",buildKey];
     NSURL *url = [NSURL URLWithString:urlstr];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];

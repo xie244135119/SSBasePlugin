@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SSBasePlugin"
-  s.version      = "1.2.9"
+  s.version      = "1.2.10"
   s.summary      = "the plugins of SSBase"
   s.description  = "all the plugins ,such as the SSBaseKit, SSBaseLib"
 
