@@ -10,7 +10,6 @@
 		3143FE62690BA3F0D1D30EF9 /* libPods-SSBasePlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE537AC1CA3CCB7987DC092C /* libPods-SSBasePlugin.a */; };
 		B564CFF582300324E1325679 /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D892B0CFEEE5C872D3657417 /* libPods-ios.a */; };
 		CB15A4501FCD36C500F1794E /* SSUMMobService.m in Sources */ = {isa = PBXBuildFile; fileRef = CB15A44E1FCD36A000F1794E /* SSUMMobService.m */; };
-		CB15A4531FCD370300F1794E /* SSApnsPushService.m in Sources */ = {isa = PBXBuildFile; fileRef = CB15A4511FCD370100F1794E /* SSApnsPushService.m */; };
 		CB15A4541FCD370700F1794E /* SSApnsPushService.h in Headers */ = {isa = PBXBuildFile; fileRef = CB15A4521FCD370100F1794E /* SSApnsPushService.h */; };
 		CB15A4551FCD370800F1794E /* SSUMMobService.h in Headers */ = {isa = PBXBuildFile; fileRef = CB15A44F1FCD36A000F1794E /* SSUMMobService.h */; };
 		CB15A4591FCD5DB300F1794E /* SSPgyerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = CB15A4581FCD5DAF00F1794E /* SSPgyerPlugin.m */; };
@@ -465,7 +464,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB15A4531FCD370300F1794E /* SSApnsPushService.m in Sources */,
 				CB15A4591FCD5DB300F1794E /* SSPgyerPlugin.m in Sources */,
 				CB15A4501FCD36C500F1794E /* SSUMMobService.m in Sources */,
 				CB15A4641FCD6C5E00F1794E /* SSPluginActionModel.m in Sources */,
