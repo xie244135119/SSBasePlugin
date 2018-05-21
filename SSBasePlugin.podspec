@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SSBasePlugin"
-  s.version      = "1.2.10"
+  s.version      = "1.2.11"
   s.summary      = "the plugins of SSBase"
   s.description  = "all the plugins ,such as the SSBaseKit, SSBaseLib"
 
@@ -62,12 +62,12 @@ Pod::Spec.new do |s|
   end
 
   #集成极光推送
-  # s.subspec "ApnsPush" do |st|
-  #   st.source_files="SSBasePlugin/ApnsPush/*.{h,m}"
-  #   # 极光推送
-  #   st.dependency 'JPush', '~>3.0.7'
-  #   st.dependency "SSBasePlugin/Private"
-  # end
+  s.subspec "ApnsPush" do |st|
+    st.source_files="SSBasePlugin/ApnsPush/*.{h,m}"
+    # 极光推送
+    st.dependency 'JPush', '~>3.0.7'
+    st.dependency "SSBasePlugin/Private"
+  end
 
   #蒲公英测试插件
   s.subspec "Pgyer" do |st|

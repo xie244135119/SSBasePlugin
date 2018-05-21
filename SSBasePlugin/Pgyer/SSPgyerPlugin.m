@@ -202,7 +202,7 @@ static NSString *const kPgyerApiKey = @"kPgyerApiKey";
 #ifdef DEBUG
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     if ([SSPgyerPlugin compareVersion:model.buildVersionNo senderVersion:version] == NSOrderedDescending) {
-        NSString *title = @"蒲公英有更新嘞";
+        NSString *title = [[NSString alloc]initWithFormat:@"%@有更新嘞", model.buildName];
         NSString *message = model.buildUpdateDescription;
 #else
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
