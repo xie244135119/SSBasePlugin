@@ -185,9 +185,9 @@ static NSString *const kPgyerApiKey = @"kPgyerApiKey";
             
             // 继续第二页查询
             if (!_querysuccess) {
-                _requestPage ++;
+                self->_requestPage ++;
                 // 请求页
-                [weakself _invokeLaterVersionWithPage:_requestPage];
+                [weakself _invokeLaterVersionWithPage:self->_requestPage];
             }
         }
     });
